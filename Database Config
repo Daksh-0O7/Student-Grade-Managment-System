@@ -1,0 +1,23 @@
+# db_config
+#  Edit HOST, USER, PASSWORD to match your MySQL Workbench setup
+
+
+import mysql.connector
+from mysql.connector import Error
+
+DB_CONFIG = {
+    "host":     "localhost",
+    "user":     "root",          # your MySQL username
+    "password": "Nomansland01", # your MySQL password
+    "database": "student_db"
+}
+
+def get_connection():
+    """Return a live MySQL connection, or None on failure."""
+    try:
+        conn = mysql.connector.connect(**DB_CONFIG)
+        return conn
+    except Error as e:
+        print(f"\n  [DB ERROR] Could not connect: {e}")
+        print("  Check that MySQL is running and DB_CONFIG is correct.\n")
+        return None
